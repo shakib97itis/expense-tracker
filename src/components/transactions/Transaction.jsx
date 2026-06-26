@@ -3,15 +3,15 @@ import deleteImage from '../../assets/delete.svg';
 
 export default function Transaction() {
   return (
-    <li class="transaction income">
+    <li className="transaction income">
       <p>Earned this month</p>
-      <div class="right">
+      <div className="right">
         <p>৳ 100</p>
-        <button class="link">
-          <img class="icon" src={editImage} />
+        <button className="link">
+          <img className="icon" src={editImage} />
         </button>
-        <button class="link">
-          <img class="icon" src={deleteImage} />
+        <button className="link">
+          <img className="icon" src={deleteImage} />
         </button>
       </div>
     </li>
