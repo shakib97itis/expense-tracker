@@ -5,6 +5,7 @@ import {
   deleteTransactionThunk,
 } from '../../features/transaction/transactionSlice';
 import {useDispatch} from 'react-redux';
+import formatNumber from '../../utils/formatNumber';
 
 export default function Transaction({transaction}) {
   const {id, name, type, amount} = transaction;
@@ -22,7 +23,7 @@ export default function Transaction({transaction}) {
     <li className={`transaction ${type}`}>
       <p>{name}</p>
       <div className="right">
-        <p>৳ {amount}</p>
+        <p>৳ {formatNumber(amount)}</p>
         <button onClick={handleActivateEdit} className="link">
           <img className="icon" src={editImage} />
         </button>
