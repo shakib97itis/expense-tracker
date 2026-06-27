@@ -33,16 +33,21 @@ export const createTransactionThunk = createAsyncThunk(
 export const updateTransactionThunk = createAsyncThunk(
   'transaction/updateTransaction',
   async ({id, data}) => {
-    const transaction = await updateTransaction(id, data);
-    return transaction;
+    await updateTransaction(id, data);
+    return id;
   },
 );
 
 export const deleteTransactionThunk = createAsyncThunk(
   'transaction/deleteTransaction',
-  async (id) => {
-    const transaction = await deleteTransaction(id);
-    return transaction;
+  async (id, {rejectWithValue}) => {
+    try {
+      await deleteTransaction(id);
+      return id;
+    } catch (error) {
+      const message = error.message || 'Something went wrong';
+      return rejectWithValue(message);
+    }
   },
 );
 

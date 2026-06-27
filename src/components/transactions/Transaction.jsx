@@ -1,14 +1,21 @@
 import editImage from '../../assets/edit.svg';
 import deleteImage from '../../assets/delete.svg';
-import {addEditing} from '../../features/transaction/transactionSlice';
+import {
+  addEditing,
+  deleteTransactionThunk,
+} from '../../features/transaction/transactionSlice';
 import {useDispatch} from 'react-redux';
 
 export default function Transaction({transaction}) {
-  const {name, type, amount} = transaction;
+  const {id, name, type, amount} = transaction;
   const dispatch = useDispatch();
 
   const handleActivateEdit = () => {
     dispatch(addEditing({...transaction}));
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteTransactionThunk(id));
   };
 
   return (
@@ -19,7 +26,7 @@ export default function Transaction({transaction}) {
         <button onClick={handleActivateEdit} className="link">
           <img className="icon" src={editImage} />
         </button>
-        <button className="link">
+        <button onClick={handleDelete} className="link">
           <img className="icon" src={deleteImage} />
         </button>
       </div>
