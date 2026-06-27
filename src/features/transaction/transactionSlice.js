@@ -11,6 +11,7 @@ const initialState = {
   isLoading: false,
   isError: false,
   error: '',
+  editing: {},
 };
 
 export const fetchTransactionsThunk = createAsyncThunk(
@@ -48,6 +49,14 @@ export const deleteTransactionThunk = createAsyncThunk(
 const transactionSlice = createSlice({
   name: 'transaction',
   initialState,
+  reducers: {
+    addEditing: (state, action) => {
+      state.editing = action.payload;
+    },
+    removeEditing: (state) => {
+      state.editing = {};
+    },
+  },
   extraReducers: (builder) => {
     // Fetch transactions
     builder
@@ -131,3 +140,4 @@ const transactionSlice = createSlice({
 });
 
 export default transactionSlice.reducer;
+export const {addEditing, removeEditing} = transactionSlice.actions;
